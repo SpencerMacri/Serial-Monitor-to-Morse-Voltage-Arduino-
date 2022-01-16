@@ -1,0 +1,46 @@
+int pinOfChoice = 8; // Not critical, you can make it any I/O pin
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinOfChoice, OUTPUT);
+}
+
+/*Morse code is foudamentally a serial, binary code, meaning the state and timing are critical. State is easy, whether or not you hear a sound, but the timing will take some work. 
+ * Originally the timing was dictated by the operator, who would be trained to tap confidently and rhthymically for best performance
+ * Here, we will designate a "short", "long", and "end sentence" duration. In the future we will likely need more
+ * I also made a "speed" multiplyer. In the future it may be useful to tweak the speed for learning purposes
+*/
+
+int speedness = 1;
+int shorter = 250;
+int longer = 800;
+int last = 1000;
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(pinOfChoice, HIGH); // now that I'm thinking about it. It would be really nice to have a function that takes speed and duration as a function
+  delay(speedness * shorter);      // and outputs the required symbol. Probably something to do next time.
+  digitalWrite(pinOfChoice, LOW);  // For now, this code plays three quick notes, then three low notes, then a sentence end before repeating at a given speed
+  delay(speedness * shorter);
+  digitalWrite(pinOfChoice, HIGH);
+  delay(speedness * shorter);
+  digitalWrite(pinOfChoice, LOW);
+  delay(speedness * shorter);
+  digitalWrite(pinOfChoice, HIGH);
+  delay(speedness * shorter);
+  digitalWrite(pinOfChoice, LOW);
+  delay(speedness * shorter);
+  digitalWrite(pinOfChoice, HIGH);
+  delay(speedness * longer);
+  digitalWrite(pinOfChoice, LOW);
+  delay(speedness * longer);
+  digitalWrite(pinOfChoice, HIGH);
+  delay(speedness * longer);
+  digitalWrite(pinOfChoice, LOW);
+  delay(speedness * longer);
+  digitalWrite(pinOfChoice, HIGH);
+  delay(speedness * longer);
+  digitalWrite(pinOfChoice, LOW);
+  delay(speedness * last);
+
+}
