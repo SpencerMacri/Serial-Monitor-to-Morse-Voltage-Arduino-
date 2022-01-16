@@ -10,7 +10,7 @@ void setup() {
 }
 
 // tempo and interval from last work
-int tempo = 1;
+float tempo = 1;
 int ditL = 100/tempo; 
 int dahL = 3*ditL/tempo; 
 int end_wordL = 2*ditL/tempo; 
