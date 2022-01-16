@@ -1,0 +1,305 @@
+/* 
+ *  Now that we have dits and dahs, we can create an alphabet. 
+ *  Every letter will be a function that plays the correct sequence of dits and dahs
+ */
+
+int pinOC = 8; // Not critical, you can make it any I/O pin."pinOC" = "pin of choice" 
+
+void setup() {
+  pinMode(pinOC, OUTPUT);
+}
+
+// tempo and interval from last work
+int tempo = 1;
+int ditL = 100/tempo; 
+int dahL = 3*ditL/tempo; 
+int end_wordL = 2*ditL/tempo; 
+int end_sentenceL = 6*ditL/tempo; 
+
+// dit, dah, and end functions from last work
+void dit(){
+  digitalWrite(pinOC, HIGH);
+  delay(ditL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void dah(){
+  digitalWrite(pinOC, HIGH);
+  delay(dahL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void end_word(){
+  digitalWrite(pinOC, LOW); //just in case
+  delay(end_wordL);
+}
+
+void end_sentence(){
+  delay(end_sentenceL);
+}
+
+// function plays the sequence for the named letter
+void play_a() {
+  dit();
+  dah();
+}
+
+void play_b() {
+  dah();
+  dit();
+  dit();
+  dit();
+}
+
+void play_c() {
+  dah();
+  dit();
+  dah();
+  dit();
+}
+
+void play_d() {
+  dah();
+  dit();
+  dit();
+}
+
+void play_e() {
+  dit();
+}
+
+void play_f() {
+  dit();
+  dit();
+  dah();
+  dit();
+}
+
+void play_g() {
+  dah();
+  dah();
+  dit();
+}
+
+void play_h() {
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_i() {
+  dit();
+  dit();
+}
+
+void play_j() {
+  dit();
+  dah();
+  dah();
+  dah();
+}
+
+void play_k() {
+  dah();
+  dit();
+  dah();
+}
+
+void play_l() {
+  dit();
+  dah();
+  dit();
+  dit();
+}
+
+void play_m() {
+  dah();
+  dah();
+}
+
+void play_n() {
+  dah();
+  dit();
+}
+
+void play_o() {
+  dah();
+  dah();
+  dah();
+}
+
+void play_p() {
+  dit();
+  dah();
+  dah();
+  dit();
+}
+
+void play_q() {
+  dah();
+  dah();
+  dit();
+  dah();
+}
+
+void play_r() {
+  dit();
+  dah();
+  dit();
+}
+
+void play_s() {
+  dit();
+  dit();
+  dit();
+}
+
+void play_t() {
+  dah();
+}
+
+void play_u() {
+  dit();
+  dit();
+  dah();
+}
+
+void play_v() {
+  dit();
+  dit();
+  dit();
+  dah();
+}
+
+void play_w() {
+  dit();
+  dah();
+  dah();
+}
+
+void play_x() {
+  dah();
+  dit();
+  dit();
+  dah();
+}
+
+void play_y() {
+  dah();
+  dit();
+  dah();
+  dah();
+}
+
+void play_z() {
+  dah();
+  dah();
+  dit();
+  dit();
+}
+
+void play_1() {
+  dit();
+  dah();
+  dah();
+  dah();
+  dah();
+}
+
+void play_2() {
+  dit();
+  dit();
+  dah();
+  dah();
+  dah();
+}
+
+void play_3() {
+  dit();
+  dit();
+  dit();
+  dah();
+  dah();
+}
+
+void play_4() {
+  dit();
+  dit();
+  dit();
+  dit();
+  dah();
+}
+
+void play_5() {
+  dit();
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_6() {
+  dah();
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_7() {
+  dah();
+  dah();
+  dit();
+  dit();
+  dit();
+}
+
+void play_8() {
+  dah();
+  dah();
+  dah();
+  dit();
+  dit();
+}
+
+void play_9() {
+  dah();
+  dah();
+  dah();
+  dah();
+  dit();
+}
+
+void play_0() {
+  dah();
+  dah();
+  dah();
+  dah();
+  dah();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+play_h();
+play_e();
+play_l();
+play_l();
+play_o();
+play_w();
+end_word();
+play_w();
+play_o();
+play_r();
+play_l();
+play_d();
+end_word();
+play_1();
+play_2();
+play_3();
+end_sentence();
+
+}
