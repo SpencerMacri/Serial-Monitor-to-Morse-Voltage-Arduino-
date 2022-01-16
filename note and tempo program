@@ -1,0 +1,59 @@
+/* 
+ *  An iteration of buzzer testing. I made functions for every operation the buzzer will be asked to perform, short buzz, long buzz, end word, and end sentence with speed modifier.
+ *  Plus some extraneous code to actually run the file in an ArduinoUno
+ */
+
+int pinOC = 8; // Not critical, you can make it any I/O pin."pinOC" = "pin of choice" 
+
+void setup() {
+  pinMode(pinOC, OUTPUT);
+}
+
+/* 
+ *  In the future, I can use this function to program letters. Each letter will be a function that calls the correct sequence of short and long buzes.
+ *  This will allow me to write a program which reads letters, and calls the correct sequence of letter functions, which will in turn activate the buzer to correctly produce the message in morse code
+ *  But one step at a time
+*/
+
+int tempo = 1; // decided to rename "speed" to "tempo". Same concept,without arduino interference. attached to every interval so intervals scale globally
+int ditL = 100/tempo; // turns out, long and short buzzes are called "dots" and "dashes" or "dits" and "dahs". "ditL" means "dit length"
+int dahL = 3*ditL/tempo; // also turns out, someone decided to standardaize note lengths, dit is one unit, dah is 3 units, end word is 3 units, end word is 7 units
+int end_wordL = 2*ditL/tempo; // plus one unit space between notes of a letter, 3 unit spaces between words,
+int end_sentenceL = 6*ditL/tempo; // end lengths have one less "dit" due to end dit ant end of previous letter
+
+void dit(){
+  digitalWrite(pinOC, HIGH);
+  delay(ditL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void dah(){
+  digitalWrite(pinOC, HIGH);
+  delay(dahL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void end_word(){
+  digitalWrite(pinOC, LOW); //just in case
+  delay(end_wordL);
+}
+
+void end_sentence(){
+  delay(end_sentenceL);
+}
+
+void loop() {
+
+dit(); // code in action. message is "a b."
+dah();
+end_word();
+dah();
+dit();
+dit();
+dit();
+end_sentence();
+
+  
+}
