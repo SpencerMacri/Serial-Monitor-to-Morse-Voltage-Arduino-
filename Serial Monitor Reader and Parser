@@ -1,0 +1,27 @@
+/* 
+ *  So basically this part of the code will read a string from the the serial monitor, which will be our user input for now, and output each character of the string individually
+ *  We will later connect this with the Morse alphabet functions to produce a "text to Morse buzzer" translator
+ *  
+ *  As I'm working on this, I've realized for convience that input messages will need to be made lower case and all non-alphanumeric characters (except periods) will need to be excluded
+ *  Should be simple enough. I'm planning on having an if statement for every input (probably inefficient, if you have a better suggestion let me know) and all non-morse compatable characters just won't have a behavior associated with them
+ *  
+ */
+
+String inputMessage = "Message: "; // generic messages
+String playing = "Playing message...";
+
+void setup() {
+  Serial.begin(9600); //I feel no need, no need for speed
+}
+
+void loop() {
+  Serial.print(inputMessage);
+  while(Serial.available()==0){}
+  String input = Serial.readString();
+
+  Serial.println(playing);
+  for (int i=0; i <= input.length(); i++) {
+    Serial.println(input[i]);
+  }
+
+}
