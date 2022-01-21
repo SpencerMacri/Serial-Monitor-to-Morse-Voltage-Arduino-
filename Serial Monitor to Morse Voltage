@@ -1,0 +1,418 @@
+/* 
+ *  Culmination of previous work. Input text to serial monitor, get ouput in Morse code
+ */
+
+String inputMessage = "Message: "; // generic messages
+String playing = "Playing message...";
+
+int pinOC = 8; // Not critical, you can make it any I/O pin."pinOC" = "pin of choice" 
+
+void setup() {
+  Serial.begin(9600); //I feel no need, no need for speed
+  pinMode(pinOC, OUTPUT);
+}
+
+// tempo and interval
+float tempo = 1;
+int ditL = 100/tempo; 
+int dahL = 3*ditL/tempo; 
+int end_wordL = 2*ditL/tempo; 
+int end_sentenceL = 6*ditL/tempo; 
+
+// dit, dah, and end functions
+void dit(){
+  digitalWrite(pinOC, HIGH);
+  delay(ditL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void dah(){
+  digitalWrite(pinOC, HIGH);
+  delay(dahL);
+  digitalWrite(pinOC, LOW);
+  delay(ditL);
+}
+
+void end_word(){
+  digitalWrite(pinOC, LOW); //just in case
+  delay(end_wordL);
+}
+
+void end_sentence(){
+  delay(end_sentenceL);
+}
+
+// function plays the sequence for the named letter
+void play_a() {
+  dit();
+  dah();
+}
+
+void play_b() {
+  dah();
+  dit();
+  dit();
+  dit();
+}
+
+void play_c() {
+  dah();
+  dit();
+  dah();
+  dit();
+}
+
+void play_d() {
+  dah();
+  dit();
+  dit();
+}
+
+void play_e() {
+  dit();
+}
+
+void play_f() {
+  dit();
+  dit();
+  dah();
+  dit();
+}
+
+void play_g() {
+  dah();
+  dah();
+  dit();
+}
+
+void play_h() {
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_i() {
+  dit();
+  dit();
+}
+
+void play_j() {
+  dit();
+  dah();
+  dah();
+  dah();
+}
+
+void play_k() {
+  dah();
+  dit();
+  dah();
+}
+
+void play_l() {
+  dit();
+  dah();
+  dit();
+  dit();
+}
+
+void play_m() {
+  dah();
+  dah();
+}
+
+void play_n() {
+  dah();
+  dit();
+}
+
+void play_o() {
+  dah();
+  dah();
+  dah();
+}
+
+void play_p() {
+  dit();
+  dah();
+  dah();
+  dit();
+}
+
+void play_q() {
+  dah();
+  dah();
+  dit();
+  dah();
+}
+
+void play_r() {
+  dit();
+  dah();
+  dit();
+}
+
+void play_s() {
+  dit();
+  dit();
+  dit();
+}
+
+void play_t() {
+  dah();
+}
+
+void play_u() {
+  dit();
+  dit();
+  dah();
+}
+
+void play_v() {
+  dit();
+  dit();
+  dit();
+  dah();
+}
+
+void play_w() {
+  dit();
+  dah();
+  dah();
+}
+
+void play_x() {
+  dah();
+  dit();
+  dit();
+  dah();
+}
+
+void play_y() {
+  dah();
+  dit();
+  dah();
+  dah();
+}
+
+void play_z() {
+  dah();
+  dah();
+  dit();
+  dit();
+}
+
+void play_1() {
+  dit();
+  dah();
+  dah();
+  dah();
+  dah();
+}
+
+void play_2() {
+  dit();
+  dit();
+  dah();
+  dah();
+  dah();
+}
+
+void play_3() {
+  dit();
+  dit();
+  dit();
+  dah();
+  dah();
+}
+
+void play_4() {
+  dit();
+  dit();
+  dit();
+  dit();
+  dah();
+}
+
+void play_5() {
+  dit();
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_6() {
+  dah();
+  dit();
+  dit();
+  dit();
+  dit();
+}
+
+void play_7() {
+  dah();
+  dah();
+  dit();
+  dit();
+  dit();
+}
+
+void play_8() {
+  dah();
+  dah();
+  dah();
+  dit();
+  dit();
+}
+
+void play_9() {
+  dah();
+  dah();
+  dah();
+  dah();
+  dit();
+}
+
+void play_0() {
+  dah();
+  dah();
+  dah();
+  dah();
+  dah();
+}
+
+void loop() {
+  Serial.print(inputMessage);
+  while(Serial.available()==0){}
+  String input = Serial.readString();
+  Serial.println(input);
+  input.toLowerCase();
+
+  Serial.println(playing);
+  // get if statement working
+  for (int i=0; i < input.length()-1; i++) {
+    if ('a' == input[i]) {
+      Serial.println("a");
+      play_a();
+    } else if ('b' == input[i]) {
+      Serial.println("b");
+      play_b();
+    } else if ('c' == input[i]) {
+      Serial.println("c");
+      play_c();
+    } else if ('d' == input[i]) {
+      Serial.println("d");
+      play_d();
+    } else if ('e' == input[i]) {
+      Serial.println("e");
+      play_e();
+    } else if ('f' == input[i]) {
+      Serial.println("f");
+      play_f();
+    } else if ('g' == input[i]) {
+      Serial.println("g");
+      play_g();
+    } else if ('h' == input[i]) {
+      Serial.println("h");
+      play_h();
+    } else if ('i' == input[i]) {
+      Serial.println("i");
+      play_i();
+    } else if ('j' == input[i]) {
+      Serial.println("j");
+      play_j();
+    } else if ('k' == input[i]) {
+      Serial.println("k");
+      play_k();
+    } else if ('l' == input[i]) {
+      Serial.println("l");
+      play_l();
+    } else if ('m' == input[i]) {
+      Serial.println("m");
+      play_m();
+    } else if ('n' == input[i]) {
+      Serial.println("n");
+      play_n();
+    } else if ('o' == input[i]) {
+      Serial.println("o");
+      play_o();
+    } else if ('p' == input[i]) {
+      Serial.println("p");
+      play_p();
+    } else if ('q' == input[i]) {
+      Serial.println("q");
+      play_q();
+    } else if ('r' == input[i]) {
+      Serial.println("r");
+      play_r();
+    } else if ('s' == input[i]) {
+      Serial.println("s");
+      play_s();
+    } else if ('t' == input[i]) {
+      Serial.println("t");
+      play_t();
+    } else if ('u' == input[i]) {
+      Serial.println("u");
+      play_u();
+    } else if ('v' == input[i]) {
+      Serial.println("v");
+      play_v();
+    } else if ('w' == input[i]) {
+      Serial.println("w");
+      play_w();
+    } else if ('x' == input[i]) {
+      Serial.println("x");
+      play_x();
+    } else if ('y' == input[i]) {
+      Serial.println("y");
+      play_y();
+    } else if ('z' == input[i]) {
+      Serial.println("z");
+      play_z();
+    } else if ('1' == input[i]) {
+      Serial.println("1");
+      play_1();
+    } else if ('2' == input[i]) {
+      Serial.println("2");
+      play_2();
+    } else if ('3' == input[i]) {
+      Serial.println("3");
+      play_3();
+    } else if ('4' == input[i]) {
+      Serial.println("4");
+      play_4();
+    } else if ('5' == input[i]) {
+      Serial.println("5");
+      play_5();
+    } else if ('6' == input[i]) {
+      Serial.println("6");
+      play_6();
+    } else if ('7' == input[i]) {
+      Serial.println("7");
+      play_7();
+    } else if ('8' == input[i]) {
+      Serial.println("8");
+      play_8();
+    } else if ('9' == input[i]) {
+      Serial.println("9");
+      play_9();
+    } else if ('0' == input[i]) {
+      Serial.println("0");
+      play_0();
+    } else if (' ' == input[i]) {
+      Serial.println("(space)");
+      end_word();
+    } else if (',' == input[i]) {
+      Serial.println(",");
+      end_word();
+    } else if ('.' == input[i]) {
+      Serial.println(".");
+      end_sentence();
+    } else {Serial.println("character not recognized");}
+    
+
+}
+} // If you're down here, Jesus Christ, go to bed
